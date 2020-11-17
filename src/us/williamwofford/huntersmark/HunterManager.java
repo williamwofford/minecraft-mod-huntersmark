@@ -16,7 +16,7 @@ public class HunterManager {
     }
 
     public Location getCompassPointLocation( Player hunter, Player target ) throws UnnavigableError {
-        return null;
+        return target.getLocation();
     }
 
     public void addHunter( Player player ) {
