@@ -29,7 +29,9 @@ public class HunterManager {
     }
 
     public void setHunterTarget( Player hunter, Player target ) {
+        playerRelations.put( hunter, target );
 
+        refreshHunterCompass( hunter );
     }
 
     public void clearHunterTarget( Player hunter ) {
