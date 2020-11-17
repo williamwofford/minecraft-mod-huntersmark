@@ -12,7 +12,7 @@ public class HunterManager {
     private final Map< Player, LocationMemory > playerLocations = new HashMap<>();
 
     public boolean isPlayerHunter( Player player ) {
-        return false;
+        return playerRelations.containsKey( player );
     }
 
     public Location getCompassPointLocation( Player hunter, Player target ) throws UnnavigableError {
