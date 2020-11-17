@@ -1,0 +1,9 @@
+name: huntersmark
+version: 1.0.0
+author: William Wofford
+main: us.williamwofford.huntersmark.HuntersMark
+api-version: 1.16
+permissions:
+  huntersmark.basic:
+    description: Anyone can use these commands.
+    default: true
