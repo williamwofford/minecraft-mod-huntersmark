@@ -24,8 +24,8 @@ public class HunterManager {
             playerRelations.put( player, null );
     }
 
-    public void removeHunter( Player player ) {
-
+    public void removeHunter( Player hunter ) {
+        playerRelations.remove( hunter );
     }
 
     public void setHunterTarget( Player hunter, Player target ) {
