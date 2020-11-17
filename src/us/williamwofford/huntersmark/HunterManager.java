@@ -20,7 +20,8 @@ public class HunterManager {
     }
 
     public void addHunter( Player player ) {
-
+        if ( !isPlayerHunter( player ) )
+            playerRelations.put( player, null );
     }
 
     public void removeHunter( Player player ) {
