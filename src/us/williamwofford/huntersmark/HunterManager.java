@@ -35,7 +35,7 @@ public class HunterManager {
     }
 
     public void clearHunterTarget( Player hunter ) {
-
+        playerRelations.put( hunter, null );
     }
 
     public void refreshHunterCompass( Player hunter ) {
