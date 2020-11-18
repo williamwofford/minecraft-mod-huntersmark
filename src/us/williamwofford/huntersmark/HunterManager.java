@@ -66,12 +66,7 @@ public class HunterManager {
             playerRelations.put( player.getUniqueId(), null );
 
             ItemStack compass = HuntersMark.ITEM_HUNTER_COMPASS;
-            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
 
-            compassMeta.setLodestoneTracked( false );
-            compassMeta.setLodestone( player.getLocation() );
-
-            compass.setItemMeta( compassMeta );
             player.getInventory().addItem( compass );
 
             Bukkit.broadcastMessage( player.getDisplayName() + " is now a Hunter" );
@@ -129,18 +124,18 @@ public class HunterManager {
 
     public void setCompassTarget( Player hunter, Player target ) throws TrackingFailureException {
         final Location trackLocation = getCompassPointLocation( hunter, target );
-//        hunter.setCompassTarget( trackLocation );
+        hunter.setCompassTarget( trackLocation );
 
-        for ( ItemStack item : hunter.getInventory().getContents() ) {
-            if ( HuntersMark.ITEM_HUNTER_COMPASS.isSimilar( item ) ) {
-                CompassMeta compassMeta = (CompassMeta) item.getItemMeta();
-
-                compassMeta.setLodestoneTracked( false );
-                compassMeta.setLodestone( trackLocation );
-
-                item.setItemMeta( compassMeta );
-            }
-        }
+//        for ( ItemStack item : hunter.getInventory().getContents() ) {
+//            if ( HuntersMark.ITEM_HUNTER_COMPASS.isSimilar( item ) ) {
+//                CompassMeta compassMeta = (CompassMeta) item.getItemMeta();
+//
+//                compassMeta.setLodestoneTracked( false );
+//                compassMeta.setLodestone( trackLocation );
+//
+//                item.setItemMeta( compassMeta );
+//            }
+//        }
     }
 
     public void setPlayerDimension( Player player, World.Environment dimension, Location location ) {

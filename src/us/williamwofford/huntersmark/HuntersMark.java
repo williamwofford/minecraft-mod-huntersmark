@@ -37,6 +37,5 @@ public class HuntersMark extends JavaPlugin {
 
     public static final ItemStack ITEM_HUNTER_COMPASS = new ItemBuilder( Material.COMPASS )
         .setName( ChatColor.DARK_RED + "Hunter's Compass" )
-        .setLore( Arrays.asList( ChatColor.DARK_RED + "Tracks a player set with /track" ) )
         .toItemStack();
 }
