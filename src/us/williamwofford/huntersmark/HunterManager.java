@@ -51,7 +51,7 @@ public class HunterManager {
         else {
             if ( !playerLocations.containsKey( target.getUniqueId() ) )
                 throw new TrackingFailureException( TrackingFailureCause.NO_DIMENSION_MEMORY );
-            
+
             final LocationMemory memory = playerLocations.get( target.getUniqueId() );
             final Location location = memory.getLocation( hunterDimension );
 
@@ -77,10 +77,15 @@ public class HunterManager {
     }
 
     public void setHunterTarget( Player hunter, Player target ) {
-        playerRelations.put( hunter.getUniqueId(), target.getUniqueId() );
-        Bukkit.broadcastMessage( hunter.getDisplayName() + " is now targeting " + target.getDisplayName() );
+        if ( !hunter.equals( target ) ) {
+            playerRelations.put( hunter.getUniqueId(), target.getUniqueId() );
+            Bukkit.broadcastMessage( hunter.getDisplayName() + " is now targeting " + target.getDisplayName() );
 
-        refreshHunterCompass( hunter );
+            refreshHunterCompass( hunter );
+        }
+        else {
+            hunter.sendMessage( "Cannot track yourself" );
+        }
     }
 
     public void clearHunterTarget( Player hunter ) {
@@ -98,10 +103,10 @@ public class HunterManager {
 
                 switch ( e.cause ) {
                     case PLAYER_OFFLINE:
-                        msg += "because they are offline.";
+                        msg += "because they are offline";
                         break;
                     case NO_DIMENSION_MEMORY:
-                        msg += "they have never entered this dimension.";
+                        msg += "they have never entered this dimension";
                         break;
                 }
 
@@ -109,12 +114,16 @@ public class HunterManager {
             }
         }
         else {
-            hunter.sendMessage( "You are not tracking anyone at the moment.\nUse \"/target <player>\" to track another player." );
+            hunter.sendMessage( "Use \"/target <player>\" to track another player" );
         }
     }
 
     public void setPlayerDimension( Player player, World.Environment dimension, Location location ) {
+        final UUID uuid = player.getUniqueId();
+        final LocationMemory memory = playerLocations.get( uuid );
 
+        memory.setLocation( dimension, location );
+        playerLocations.put( uuid, memory );
     }
 
     private static class TrackingFailureException extends Exception {

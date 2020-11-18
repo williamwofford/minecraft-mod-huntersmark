@@ -45,7 +45,7 @@ public class DimensionListener implements Listener {
         }
 
         HuntersMark.hunterManager.setPlayerDimension( player, fromDimension, fromLocation );
-        HuntersMark.hunterManager.setPlayerDimension( player, toDimension, toLocation );
+//        HuntersMark.hunterManager.setPlayerDimension( player, toDimension, toLocation );
 
         Bukkit.broadcastMessage( player.getDisplayName() + " has portaled from " + fromDimension.toString() + " to " + toDimension.toString() );
     }
