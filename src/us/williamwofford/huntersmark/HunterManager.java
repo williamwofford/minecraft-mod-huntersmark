@@ -77,6 +77,16 @@ public class HunterManager {
         if ( isPlayerHunter( hunter ) ) {
             playerRelations.remove( hunter.getUniqueId() );
             Bukkit.broadcastMessage( hunter.getDisplayName() + " is no longer a Hunter" );
+
+            final List< ItemStack > toRemove = new ArrayList<>();
+            for ( ItemStack item : hunter.getInventory().getContents() ) {
+                if ( HuntersMark.ITEM_HUNTER_COMPASS.isSimilar( item ) ) {
+                    toRemove.add( item );
+                }
+            }
+            for ( ItemStack item : toRemove ) {
+                hunter.getInventory().remove( item );
+            }
         }
     }
 
