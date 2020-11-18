@@ -120,7 +120,12 @@ public class HunterManager {
 
     public void setPlayerDimension( Player player, World.Environment dimension, Location location ) {
         final UUID uuid = player.getUniqueId();
-        final LocationMemory memory = playerLocations.get( uuid );
+        final LocationMemory memory;
+
+        if ( playerLocations.get( uuid ) != null )
+            memory = playerLocations.get( uuid );
+        else
+            memory = new LocationMemory();
 
         memory.setLocation( dimension, location );
         playerLocations.put( uuid, memory );
