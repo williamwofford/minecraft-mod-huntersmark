@@ -18,8 +18,8 @@ commands:
     usage: /hunter
     permission: huntersmark.basic
     permission-message: Insufficient permissions to execute command.
-  target:
-    description: Sets or unsets a specific player to target.
-    usage: /target <player>
+  track:
+    description: Sets or unsets a specific player to track.
+    usage: /track <player>
     permission: huntersmark.basic
     permission-message: Insufficient permissions to execute command.

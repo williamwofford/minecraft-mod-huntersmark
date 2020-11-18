@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import us.williamwofford.huntersmark.commands.CommandHunter;
 import us.williamwofford.huntersmark.commands.CommandHunterList;
-import us.williamwofford.huntersmark.commands.CommandTarget;
+import us.williamwofford.huntersmark.commands.CommandTrack;
 import us.williamwofford.huntersmark.item.ItemBuilder;
 import us.williamwofford.huntersmark.listeners.CompassListener;
 import us.williamwofford.huntersmark.listeners.DimensionListener;
@@ -26,7 +26,7 @@ public class HuntersMark extends JavaPlugin {
 
         this.getCommand( "listhunters" ).setExecutor( new CommandHunterList() );
         this.getCommand( "hunter" ).setExecutor( new CommandHunter() );
-        this.getCommand( "target" ).setExecutor( new CommandTarget() );
+        this.getCommand( "track" ).setExecutor( new CommandTrack() );
     }
 
     @Override
@@ -36,6 +36,6 @@ public class HuntersMark extends JavaPlugin {
 
     public static final ItemStack ITEM_HUNTER_COMPASS = new ItemBuilder( Material.COMPASS )
         .setName( ChatColor.DARK_RED + "Hunter's Compass" )
-        .setLore( Arrays.asList( ChatColor.DARK_RED + "Right click to update the needle." ) )
+        .setLore( Arrays.asList( ChatColor.DARK_RED + "Tracks a player set with /track" ) )
         .toItemStack();
 }

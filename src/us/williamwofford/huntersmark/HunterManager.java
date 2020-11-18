@@ -81,7 +81,7 @@ public class HunterManager {
     public void setHunterTarget( Player hunter, Player target ) {
         if ( !hunter.equals( target ) ) {
             playerRelations.put( hunter.getUniqueId(), target.getUniqueId() );
-            Bukkit.broadcastMessage( hunter.getDisplayName() + " is now targeting " + target.getDisplayName() );
+            Bukkit.broadcastMessage( hunter.getDisplayName() + " is now tracking " + target.getDisplayName() );
 
             refreshHunterCompass( hunter );
         }
@@ -116,7 +116,7 @@ public class HunterManager {
             }
         }
         else {
-            hunter.sendMessage( "Use \"/target <player>\" to track another player" );
+            hunter.sendMessage( "Use \"/track <player>\" to track another player" );
         }
     }
 

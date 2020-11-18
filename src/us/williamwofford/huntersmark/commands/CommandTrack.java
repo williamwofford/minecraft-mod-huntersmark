@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import us.williamwofford.huntersmark.HuntersMark;
 
-public class CommandTarget implements CommandExecutor {
+public class CommandTrack implements CommandExecutor {
 
     @Override
     public boolean onCommand( CommandSender commandSender, Command command, String s, String[] strings ) {
