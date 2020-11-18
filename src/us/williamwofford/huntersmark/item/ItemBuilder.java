@@ -155,7 +155,7 @@ public class ItemBuilder {
     }
     /**
      * Remove a lore line.
-     * @param lore The lore to remove.
+     * @param line The lore to remove.
      */
     public ItemBuilder removeLoreLine(String line){
         ItemMeta im = is.getItemMeta();
@@ -212,7 +212,7 @@ public class ItemBuilder {
      */
     @SuppressWarnings("deprecation")
     public ItemBuilder setDyeColor(DyeColor color){
-        this.is.setDurability(color.getData());
+        this.is.setDurability(color.getDyeData());
         return this;
     }
     /**
@@ -223,8 +223,8 @@ public class ItemBuilder {
      */
     @Deprecated
     public ItemBuilder setWoolColor(DyeColor color){
-        if(!is.getType().equals(Material.WOOL))return this;
-        this.is.setDurability(color.getData());
+        if(!is.getType().equals(Material.LEGACY_WOOL))return this;
+        this.is.setDurability(color.getDyeData());
         return this;
     }
     /**
