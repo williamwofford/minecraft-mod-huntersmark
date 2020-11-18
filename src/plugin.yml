@@ -7,7 +7,7 @@ permissions:
   huntersmark.basic:
     description: Anyone can use these commands.
     default: true
-  huntersmark.hunter:
+  huntersmark.notop:
     description: Only Hunter Players can use these commands.
     default: not-op
 commands:
@@ -17,12 +17,12 @@ commands:
     permission: huntersmark.basic
     permission-message: Insufficient permissions to execute command.
   hunter:
-    description: Sets or unsets a player as a Hunter.
-    usage: /hunter [player]
-    permission: huntersmark.basic
+    description: Sets or unsets using player as a Hunter.
+    usage: /hunter
+    permission: huntersmark.notop
     permission-message: Insufficient permissions to execute command.
   target:
     description: Sets or unsets a specific player to target.
     usage: /target <player>
-    permission: huntersmark.hunter
+    permission: huntersmark.notop
     permission-message: Insufficient permissions to execute command.
