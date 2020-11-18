@@ -1,5 +1,6 @@
 package us.williamwofford.huntersmark;
 
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import us.williamwofford.huntersmark.commands.CommandHunter;
 import us.williamwofford.huntersmark.commands.CommandHunterList;
