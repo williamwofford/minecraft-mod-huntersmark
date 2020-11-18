@@ -10,6 +10,8 @@ import us.williamwofford.huntersmark.listeners.PlayerJoinedListener;
 
 public class HuntersMark extends JavaPlugin {
 
+    public static HunterManager hunterManager = new HunterManager();
+
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents( new PlayerJoinedListener(), this );
