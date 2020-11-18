@@ -12,8 +12,8 @@ public class CompassListener implements Listener {
 
     @EventHandler
     public void onInteract( PlayerInteractEvent e ) {
-        Player player = e.getPlayer();
-        Action action = e.getAction();
+        final Player player = e.getPlayer();
+        final Action action = e.getAction();
 
         if ( HuntersMark.hunterManager.isPlayerHunter( player ) ) {
 
