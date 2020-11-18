@@ -65,7 +65,14 @@ public class HunterManager {
         if ( !isPlayerHunter( player ) ) {
             playerRelations.put( player.getUniqueId(), null );
 
-            player.getInventory().addItem( HuntersMark.ITEM_HUNTER_COMPASS );
+            ItemStack compass = HuntersMark.ITEM_HUNTER_COMPASS;
+            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
+
+            compassMeta.setLodestoneTracked( false );
+            compassMeta.setLodestone( player.getLocation() );
+
+            compass.setItemMeta( compassMeta );
+            player.getInventory().addItem( compass );
 
             Bukkit.broadcastMessage( player.getDisplayName() + " is now a Hunter" );
         }
@@ -99,7 +106,7 @@ public class HunterManager {
 
         if ( target != null ) {
             try {
-                hunter.setCompassTarget( getCompassPointLocation( hunter, target ) );
+                setCompassTarget( hunter, target );
             } catch ( TrackingFailureException e ) {
                 String msg = target.getDisplayName() + ChatColor.DARK_RED + " cannot be tracked ";
 
@@ -117,6 +124,22 @@ public class HunterManager {
         }
         else {
             hunter.sendMessage( "Use \"/track <player>\" to track another player" );
+        }
+    }
+
+    public void setCompassTarget( Player hunter, Player target ) throws TrackingFailureException {
+        final Location trackLocation = getCompassPointLocation( hunter, target );
+//        hunter.setCompassTarget( trackLocation );
+
+        for ( ItemStack item : hunter.getInventory().getContents() ) {
+            if ( HuntersMark.ITEM_HUNTER_COMPASS.isSimilar( item ) ) {
+                CompassMeta compassMeta = (CompassMeta) item.getItemMeta();
+
+                compassMeta.setLodestoneTracked( false );
+                compassMeta.setLodestone( trackLocation );
+
+                item.setItemMeta( compassMeta );
+            }
         }
     }
 
