@@ -15,11 +15,14 @@ commands:
     description: Lists all Hunters. Hunters that are offline will appear in grey.
     usage: /listhunters
     permission: huntersmark.basic
+    permission-message: Insufficient permissions to execute command.
   hunter:
     description: Sets or unsets a player as a Hunter.
     usage: /hunter [player]
     permission: huntersmark.basic
+    permission-message: Insufficient permissions to execute command.
   target:
     description: Sets or unsets a specific player to target.
     usage: /target <player>
     permission: huntersmark.hunter
+    permission-message: Insufficient permissions to execute command.
