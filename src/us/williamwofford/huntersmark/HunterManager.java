@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class HunterManager {
     private final Map< Player, Player > playerRelations = new HashMap<>();
@@ -17,6 +18,10 @@ public class HunterManager {
 
     public Map< Player, LocationMemory > getPlayerLocations() {
         return playerLocations;
+    }
+
+    public Set< Player > getAllHunters() {
+        return playerRelations.keySet();
     }
 
     public boolean isPlayerHunter( Player player ) {
