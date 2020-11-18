@@ -49,6 +49,9 @@ public class HunterManager {
         if ( hunterDimension == targetDimension )
             return target.getLocation();
         else {
+            if ( !playerLocations.containsKey( target.getUniqueId() ) )
+                throw new TrackingFailureException( TrackingFailureCause.NO_DIMENSION_MEMORY );
+            
             final LocationMemory memory = playerLocations.get( target.getUniqueId() );
             final Location location = memory.getLocation( hunterDimension );
 
