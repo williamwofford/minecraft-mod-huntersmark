@@ -5,28 +5,32 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class HunterManager {
-    private final Map< Player, Player > playerRelations = new HashMap<>();
-    private final Map< Player, LocationMemory > playerLocations = new HashMap<>();
+    private final Map< UUID, UUID > playerRelations = new HashMap<>();
+    private final Map< UUID, LocationMemory > playerLocations = new HashMap<>();
 
-    public Map< Player, Player > getPlayerRelations() {
+    public Map< UUID, UUID > getPlayerRelations() {
         return playerRelations;
     }
 
-    public Map< Player, LocationMemory > getPlayerLocations() {
+    public Map< UUID, LocationMemory > getPlayerLocations() {
         return playerLocations;
     }
 
-    public Set< Player > getAllHunters() {
-        return playerRelations.keySet();
+    public Set< Player > getOnlineHunters() {
+        final Set< Player > onlinePlayers = new HashSet<>();
+        for ( Player player : Bukkit.getServer().getOnlinePlayers() ) {
+            if ( playerRelations.containsKey( player.getUniqueId() ) )
+                onlinePlayers.add( player );
+        }
+
+        return onlinePlayers;
     }
 
     public boolean isPlayerHunter( Player player ) {
-        return playerRelations.containsKey( player );
+        return playerRelations.containsKey( player.getUniqueId() );
     }
 
     public Location getCompassPointLocation( Player hunter, Player target ) throws Exception {
@@ -35,27 +39,27 @@ public class HunterManager {
 
     public void addHunter( Player player ) {
         if ( !isPlayerHunter( player ) ) {
-            playerRelations.put( player, null );
+            playerRelations.put( player.getUniqueId(), null );
             Bukkit.broadcastMessage( player.getDisplayName() + " is now a Hunter" );
         }
     }
 
     public void removeHunter( Player hunter ) {
         if ( isPlayerHunter( hunter ) ) {
-            playerRelations.remove( hunter );
+            playerRelations.remove( hunter.getUniqueId() );
             Bukkit.broadcastMessage( hunter.getDisplayName() + " is no longer a Hunter" );
         }
     }
 
     public void setHunterTarget( Player hunter, Player target ) {
-        playerRelations.put( hunter, target );
+        playerRelations.put( hunter.getUniqueId(), target.getUniqueId() );
         Bukkit.broadcastMessage( hunter.getDisplayName() + " is now targeting " + target.getDisplayName() );
 
         refreshHunterCompass( hunter );
     }
 
     public void clearHunterTarget( Player hunter ) {
-        playerRelations.put( hunter, null );
+        playerRelations.put( hunter.getUniqueId(), null );
     }
 
     public void refreshHunterCompass( Player hunter ) {

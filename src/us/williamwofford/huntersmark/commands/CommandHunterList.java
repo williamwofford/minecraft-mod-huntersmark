@@ -13,7 +13,7 @@ public class CommandHunterList implements CommandExecutor {
     public boolean onCommand( CommandSender commandSender, Command command, String s, String[] strings ) {
 
         String result = "Current Hunters: \n";
-        for ( Player player : HuntersMark.hunterManager.getAllHunters() ) {
+        for ( Player player : HuntersMark.hunterManager.getOnlineHunters() ) {
             final ChatColor onlineStatusColor = player.isOnline() ? ChatColor.RESET : ChatColor.DARK_GRAY;
             result += onlineStatusColor + player.getDisplayName() + " ";
         }
