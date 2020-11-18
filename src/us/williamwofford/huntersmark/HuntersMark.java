@@ -1,13 +1,18 @@
 package us.williamwofford.huntersmark;
 
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import us.williamwofford.huntersmark.commands.CommandHunter;
 import us.williamwofford.huntersmark.commands.CommandHunterList;
 import us.williamwofford.huntersmark.commands.CommandTarget;
+import us.williamwofford.huntersmark.item.ItemBuilder;
 import us.williamwofford.huntersmark.listeners.CompassListener;
 import us.williamwofford.huntersmark.listeners.DimensionListener;
 import us.williamwofford.huntersmark.listeners.PlayerKickedListener;
+
+import java.util.Arrays;
 
 public class HuntersMark extends JavaPlugin {
 
@@ -28,4 +33,9 @@ public class HuntersMark extends JavaPlugin {
     public void onDisable() {
 
     }
+
+    public static final ItemStack ITEM_HUNTER_COMPASS = new ItemBuilder( Material.COMPASS )
+        .setName( ChatColor.DARK_RED + "Hunter's Compass" )
+        .setLore( Arrays.asList( ChatColor.DARK_RED + "Right click to update the needle." ) )
+        .toItemStack();
 }

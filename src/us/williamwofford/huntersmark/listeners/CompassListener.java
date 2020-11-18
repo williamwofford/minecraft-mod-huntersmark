@@ -1,6 +1,5 @@
 package us.williamwofford.huntersmark.listeners;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,7 +18,7 @@ public class CompassListener implements Listener {
 
             if ( action.equals( Action.RIGHT_CLICK_BLOCK ) || action.equals( Action.RIGHT_CLICK_AIR ) ) {
 
-                if ( player.getInventory().getItemInMainHand().getItemMeta().getLore().contains( "huntercompass" ) ) {
+                if ( HuntersMark.ITEM_HUNTER_COMPASS.isSimilar( player.getInventory().getItemInMainHand() ) ) {
                     HuntersMark.hunterManager.refreshHunterCompass( player );
                 }
             }

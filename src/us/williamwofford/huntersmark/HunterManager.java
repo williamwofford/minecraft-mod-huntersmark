@@ -65,21 +65,7 @@ public class HunterManager {
         if ( !isPlayerHunter( player ) ) {
             playerRelations.put( player.getUniqueId(), null );
 
-            ItemStack compass = new ItemStack( Material.COMPASS );
-            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
-
-            assert compassMeta != null;
-
-            final ArrayList< String > lore = new ArrayList<>();
-            lore.add( "huntercompass" );
-
-            compassMeta.setDisplayName( "Hunter's Compass" );
-            compassMeta.setLore( lore );
-            compassMeta.setLodestone( player.getLocation() );
-            compassMeta.setLodestoneTracked( false );
-
-            compass.setItemMeta( compassMeta );
-            player.getInventory().addItem( compass );
+            player.getInventory().addItem( HuntersMark.ITEM_HUNTER_COMPASS );
 
             Bukkit.broadcastMessage( player.getDisplayName() + " is now a Hunter" );
         }
