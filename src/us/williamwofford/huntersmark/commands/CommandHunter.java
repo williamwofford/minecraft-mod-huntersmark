@@ -1,4 +1,4 @@
-package us.williamwofford.huntersmark.listeners;
+package us.williamwofford.huntersmark.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
