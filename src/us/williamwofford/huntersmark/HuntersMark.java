@@ -15,7 +15,6 @@ public class HuntersMark extends JavaPlugin {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents( new PlayerKickedListener(), this );
-
         getServer().getPluginManager().registerEvents( new DimensionListener(), this );
         getServer().getPluginManager().registerEvents( new CompassListener(), this );
 

@@ -106,7 +106,7 @@ public class HunterManager {
                         msg += "because they are offline";
                         break;
                     case NO_DIMENSION_MEMORY:
-                        msg += "they have never entered this dimension";
+                        msg += "because they have never entered this dimension";
                         break;
                 }
 
