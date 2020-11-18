@@ -1,6 +1,7 @@
 package us.williamwofford.huntersmark;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -29,11 +30,15 @@ public class HunterManager {
         return onlinePlayers;
     }
 
+    public Player getHunterTarget( Player hunter ) {
+        return Bukkit.getServer().getPlayer( playerRelations.get( hunter.getUniqueId() ) );
+    }
+
     public boolean isPlayerHunter( Player player ) {
         return playerRelations.containsKey( player.getUniqueId() );
     }
 
-    public Location getCompassPointLocation( Player hunter, Player target ) throws Exception {
+    public Location getCompassPointLocation( Player hunter, Player target ) throws TrackingFailureException {
         return target.getLocation();
     }
 
@@ -63,10 +68,46 @@ public class HunterManager {
     }
 
     public void refreshHunterCompass( Player hunter ) {
+        final Player target = getHunterTarget( hunter );
 
+        if ( target != null ) {
+            try {
+                hunter.setCompassTarget( getCompassPointLocation( hunter, target ) );
+            } catch ( TrackingFailureException e ) {
+                String msg = target.getDisplayName() + ChatColor.DARK_RED + " cannot be tracked ";
+
+                switch ( e.cause ) {
+                    case PLAYER_OFFLINE:
+                        msg += "because they are offline.";
+                        break;
+                    case NO_DIMENSION_MEMORY:
+                        msg += "they have never entered this dimension.";
+                        break;
+                }
+
+                hunter.sendMessage( msg );
+            }
+        }
+        else {
+            hunter.sendMessage( "You are not tracking anyone at the moment.\nPlease use \"/target <player>\" to track another player." );
+        }
     }
 
     public void setPlayerDimension( Player player, World.Environment dimension, Location location ) {
 
+    }
+
+    private static class TrackingFailureException extends Exception {
+        private TrackingFailureCause cause;
+
+        public TrackingFailureException( TrackingFailureCause cause ) {
+            super();
+            this.cause = cause;
+        }
+    }
+
+    private enum TrackingFailureCause {
+        PLAYER_OFFLINE,
+        NO_DIMENSION_MEMORY
     }
 }
