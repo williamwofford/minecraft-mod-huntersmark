@@ -1,5 +1,6 @@
 package us.williamwofford.huntersmark;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -33,16 +34,22 @@ public class HunterManager {
     }
 
     public void addHunter( Player player ) {
-        if ( !isPlayerHunter( player ) )
+        if ( !isPlayerHunter( player ) ) {
             playerRelations.put( player, null );
+            Bukkit.broadcastMessage( player.getDisplayName() + " is now a Hunter" );
+        }
     }
 
     public void removeHunter( Player hunter ) {
-        playerRelations.remove( hunter );
+        if ( isPlayerHunter( hunter ) ) {
+            playerRelations.remove( hunter );
+            Bukkit.broadcastMessage( hunter.getDisplayName() + " is no longer a Hunter" );
+        }
     }
 
     public void setHunterTarget( Player hunter, Player target ) {
         playerRelations.put( hunter, target );
+        Bukkit.broadcastMessage( hunter.getDisplayName() + " is now targeting " + target.getDisplayName() );
 
         refreshHunterCompass( hunter );
     }
