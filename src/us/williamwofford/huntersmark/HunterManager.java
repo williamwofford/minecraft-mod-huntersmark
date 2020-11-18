@@ -1,10 +1,9 @@
 package us.williamwofford.huntersmark;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.CompassMeta;
 
 import java.util.*;
 
@@ -65,6 +64,23 @@ public class HunterManager {
     public void addHunter( Player player ) {
         if ( !isPlayerHunter( player ) ) {
             playerRelations.put( player.getUniqueId(), null );
+
+            ItemStack compass = new ItemStack( Material.COMPASS );
+            CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
+
+            assert compassMeta != null;
+
+            final ArrayList< String > lore = new ArrayList<>();
+            lore.add( "huntercompass" );
+
+            compassMeta.setDisplayName( "Hunter's Compass" );
+            compassMeta.setLore( lore );
+            compassMeta.setLodestone( player.getLocation() );
+            compassMeta.setLodestoneTracked( false );
+
+            compass.setItemMeta( compassMeta );
+            player.getInventory().addItem( compass );
+
             Bukkit.broadcastMessage( player.getDisplayName() + " is now a Hunter" );
         }
     }

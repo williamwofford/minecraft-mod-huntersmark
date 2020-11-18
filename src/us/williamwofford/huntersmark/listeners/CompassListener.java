@@ -19,7 +19,7 @@ public class CompassListener implements Listener {
 
             if ( action.equals( Action.RIGHT_CLICK_BLOCK ) || action.equals( Action.RIGHT_CLICK_AIR ) ) {
 
-                if ( player.getInventory().getItemInMainHand().getType() == Material.COMPASS ) {
+                if ( player.getInventory().getItemInMainHand().getItemMeta().getLore().contains( "huntercompass" ) ) {
                     HuntersMark.hunterManager.refreshHunterCompass( player );
                 }
             }
