@@ -15,7 +15,7 @@ public class HunterManager {
         return playerRelations.containsKey( player );
     }
 
-    public Location getCompassPointLocation( Player hunter, Player target ) throws UnnavigableError {
+    public Location getCompassPointLocation( Player hunter, Player target ) throws Exception {
         return target.getLocation();
     }
 
@@ -44,23 +44,5 @@ public class HunterManager {
 
     public void setPlayerDimension( Player player, World.Environment dimension, Location location ) {
 
-    }
-
-    private class UnnavigableError extends Exception {
-        public UnnavigableError() {
-            super();
-        }
-
-        public UnnavigableError( String message ) {
-            super( message );
-        }
-
-        public UnnavigableError( String message, Throwable cause ) {
-            super( message, cause );
-        }
-
-        public UnnavigableError( Throwable cause ) {
-            super( cause );
-        }
     }
 }
