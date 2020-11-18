@@ -18,7 +18,20 @@ public class LocationMemory {
     }
 
     public Location getLocation( World.Environment dimension ) throws Exception {
-        return null;
+        switch ( dimension ) {
+            default:
+                if ( overworld == null )
+                    throw new Exception();
+                return overworld;
+            case NETHER:
+                if ( nether == null )
+                    throw new Exception();
+                return nether;
+            case THE_END:
+                if ( end == null )
+                    throw new Exception();
+                return end;
+        }
     }
 
     public void setLocation( World.Environment dimension, Location location ) {
