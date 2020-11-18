@@ -39,7 +39,24 @@ public class HunterManager {
     }
 
     public Location getCompassPointLocation( Player hunter, Player target ) throws TrackingFailureException {
-        return target.getLocation();
+
+        if ( !target.isOnline() )
+            throw new TrackingFailureException( TrackingFailureCause.PLAYER_OFFLINE );
+
+        final World.Environment hunterDimension = hunter.getWorld().getEnvironment();
+        final World.Environment targetDimension = target.getWorld().getEnvironment();
+
+        if ( hunterDimension == targetDimension )
+            return target.getLocation();
+        else {
+            final LocationMemory memory = playerLocations.get( target.getUniqueId() );
+            final Location location = memory.getLocation( hunterDimension );
+
+            if ( location != null )
+                return location;
+            else
+                throw new TrackingFailureException( TrackingFailureCause.NO_DIMENSION_MEMORY );
+        }
     }
 
     public void addHunter( Player player ) {
@@ -89,7 +106,7 @@ public class HunterManager {
             }
         }
         else {
-            hunter.sendMessage( "You are not tracking anyone at the moment.\nPlease use \"/target <player>\" to track another player." );
+            hunter.sendMessage( "You are not tracking anyone at the moment.\nUse \"/target <player>\" to track another player." );
         }
     }
 
