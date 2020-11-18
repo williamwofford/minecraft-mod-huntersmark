@@ -6,7 +6,7 @@ import us.williamwofford.huntersmark.commands.CommandHunterList;
 import us.williamwofford.huntersmark.commands.CommandTarget;
 import us.williamwofford.huntersmark.listeners.CompassListener;
 import us.williamwofford.huntersmark.listeners.DimensionListener;
-import us.williamwofford.huntersmark.listeners.PlayerJoinedListener;
+import us.williamwofford.huntersmark.listeners.PlayerKickedListener;
 
 public class HuntersMark extends JavaPlugin {
 
@@ -14,7 +14,8 @@ public class HuntersMark extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents( new PlayerJoinedListener(), this );
+        getServer().getPluginManager().registerEvents( new PlayerKickedListener(), this );
+
         getServer().getPluginManager().registerEvents( new DimensionListener(), this );
         getServer().getPluginManager().registerEvents( new CompassListener(), this );
 
