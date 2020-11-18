@@ -1,5 +1,7 @@
 package us.williamwofford.huntersmark.listeners;
 
-public class PlayerJoinedListener {
-    
+import org.bukkit.event.Listener;
+
+public class PlayerJoinedListener implements Listener {
+
 }
