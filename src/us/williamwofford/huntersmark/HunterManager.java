@@ -11,6 +11,14 @@ public class HunterManager {
     private final Map< Player, Player > playerRelations = new HashMap<>();
     private final Map< Player, LocationMemory > playerLocations = new HashMap<>();
 
+    public Map< Player, Player > getPlayerRelations() {
+        return playerRelations;
+    }
+
+    public Map< Player, LocationMemory > getPlayerLocations() {
+        return playerLocations;
+    }
+
     public boolean isPlayerHunter( Player player ) {
         return playerRelations.containsKey( player );
     }
