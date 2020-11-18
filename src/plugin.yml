@@ -7,9 +7,6 @@ permissions:
   huntersmark.basic:
     description: Anyone can use these commands.
     default: true
-  huntersmark.notop:
-    description: Only Hunter Players can use these commands.
-    default: not-op
 commands:
   listhunters:
     description: Lists all Hunters. Hunters that are offline will appear in grey.
@@ -19,10 +16,10 @@ commands:
   hunter:
     description: Sets or unsets using player as a Hunter.
     usage: /hunter
-    permission: huntersmark.notop
+    permission: huntersmark.basic
     permission-message: Insufficient permissions to execute command.
   target:
     description: Sets or unsets a specific player to target.
     usage: /target <player>
-    permission: huntersmark.notop
+    permission: huntersmark.basic
     permission-message: Insufficient permissions to execute command.
