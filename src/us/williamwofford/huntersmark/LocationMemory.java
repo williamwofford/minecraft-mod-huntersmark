@@ -35,6 +35,16 @@ public class LocationMemory {
     }
 
     public void setLocation( World.Environment dimension, Location location ) {
-
+        switch ( dimension ) {
+            default:
+                overworld = location;
+                break;
+            case NETHER:
+                nether = location;
+                break;
+            case THE_END:
+                end = location;
+                break;
+        }
     }
 }
